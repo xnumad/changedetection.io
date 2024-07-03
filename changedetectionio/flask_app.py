@@ -716,6 +716,8 @@ def changedetection_app(config=None, datastore_o=None):
                     for t in form.data.get('tags').split(','):
                         tag_uuids.append(datastore.add_tag(name=t))
                     extra_update_obj['tags'] = tag_uuids
+            else:
+                extra_update_obj['tags'] = [] #would otherwise be stored as "", unexpected datatype
 
             datastore.data['watching'][uuid].update(form.data)
             datastore.data['watching'][uuid].update(extra_update_obj)
